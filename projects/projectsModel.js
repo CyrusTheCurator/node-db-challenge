@@ -5,6 +5,8 @@ module.exports = {
   getResources,
   postProject,
   postResource,
+  postTask,
+  getTasks,
 };
 //helpers go here
 function getProjects(id) {
@@ -17,7 +19,7 @@ function getProjects(id) {
 
 function getResources(id) {
   if (id) {
-    return db("resources").where({ id });
+    return db("resources").where({ project_id: id });
   } else {
     return db("resources");
   }
@@ -29,10 +31,28 @@ function postProject(project) {
       return getProjects(projectIdArr[0]);
     });
 }
-function postResource(resource) {
+function postResource(project_id, resource) {
+  resource.project_id = project_id;
   return db("resources")
     .insert(resource)
     .then((resourceIdArr) => {
-      return getProjects(resourceIdArr[0]);
+      return getResources(resourceIdArr[0]);
+    });
+}
+
+function getTasks(project_id) {
+  return db("tasks")
+    .where({ project_id })
+    .join("projects as p", "p.id", "tasks.project_id")
+    .select("p.name", "p.description", "tasks.task_description", "tasks.notes");
+}
+
+function postTask(project_id, task) {
+  task.project_id = project_id;
+
+  return db("tasks")
+    .insert(task)
+    .then((taskIdArr) => {
+      return getTasks(project_id);
     });
 }

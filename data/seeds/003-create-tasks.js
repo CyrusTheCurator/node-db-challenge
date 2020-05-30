@@ -6,22 +6,25 @@ exports.seed = function (knex) {
       // Inserts seed entries
       return knex("tasks").insert([
         {
-          description:
+          task_description:
             "Grab the table by its leading edge and utilize leverage",
           notes: "do you really need more instructions?",
           completed: false,
+          project_id: 3,
         },
         {
-          description:
+          task_description:
             "Take your prototype starship and just build it again 1000 times. Should be easy, right?",
           notes: "??? profit?",
           completed: false,
+          project_id: 1,
         },
         {
-          description:
+          task_description:
             "Withdraw your life savings and head down to your local office supply store to purchase the most expensive chair they sell",
           notes: "enjoy your luxurious purchase",
           completed: false,
+          project_id: 2,
         },
       ]);
     });

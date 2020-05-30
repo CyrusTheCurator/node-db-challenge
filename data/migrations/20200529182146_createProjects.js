@@ -9,13 +9,15 @@ exports.up = function (knex) {
     .createTable("resources", (tbl) => {
       tbl.increments("id");
       tbl.string("name");
-      tbl.string("description");
+      tbl.string("resource_description");
+      tbl.integer("project_id").notNullable().unsigned();
     })
     .createTable("tasks", (tbl) => {
       tbl.increments("id");
-      tbl.string("description");
+      tbl.string("task_description");
       tbl.string("notes");
       tbl.boolean("completed").notNullable().defaultTo(false);
+      tbl.integer("project_id").notNullable().unsigned();
     })
     .createTable("project_tasks", (tbl) => {
       tbl

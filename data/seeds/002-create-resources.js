@@ -5,9 +5,21 @@ exports.seed = function (knex) {
     .then(function () {
       // Inserts seed entries
       return knex("resources").insert([
-        { name: "chair", description: "that's a mighty fine chair" },
-        { name: "table", description: "that's a mighty fine table" },
-        { name: "starship", description: "that's a mighty fine starship" },
+        {
+          name: "chair",
+          resource_description: "that's a mighty fine chair",
+          project_id: 2,
+        },
+        {
+          name: "table",
+          resource_description: "that's a mighty fine table",
+          project_id: 3,
+        },
+        {
+          name: "starship",
+          resource_description: "that's a mighty fine starship",
+          project_id: 1,
+        },
       ]);
     });
 };
