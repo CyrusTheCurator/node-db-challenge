@@ -1,8 +1,8 @@
 const express = require("express");
 const helmet = require("helmet");
 
-const db = require("./data/models/recipes_model");
-const recipeRouter = require("./recipes/recipeRouter");
+const db = require("./projects/projectsModel");
+const projectsRouter = require("./projects/projectsRouter");
 const server = express();
 
 server.use(helmet());
